@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Personal Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+</head>
+<body>
+    <h1 class="main-heading">AI Personal Assistant</h1>
+
+    <div class="container">
+        <div class="task-panel ask-panel">
+            <h2>Ask Anything</h2>
+            <form id="askForm">
+                <input type="text" name="question" placeholder="Ask anything..." required>
+                <button type="submit">Ask</button>
+            </form>
+
+            <p id="ans-loading" style="display:none;">Processing...</p>
+            <p id="answer"></p>
+        </div>
+
+        <div class="task-panel email-panel">
+            <h2>Summarize Email</h2>
+            <form id="emailForm">
+                <input type="text" name="email" placeholder="Paste your email here..." required>
+                <button type="submit">Summarize</button>
+            </form>
+            <p id="summary-loading" style="display:none;">Processing...</p>
+            <p id="summary"></p>
+        </div>
+
+        <div class="task-panel document-panel">
+            <h2>Summarize Document</h2>
+            <form id="documentForm" enctype="multipart/form-data">
+                <input type="file" name="document" accept="application/pdf" required>
+                <button type="submit">Read PDF</button>
+            </form>
+            <p id="doc-loading" style="display:none;">Reading document...</p>
+            <p id="doc-summary"></p>
+        </div>
+
+    </div>
+    
+    <script>
+        document.getElementById("askForm").onsubmit = async (e) => {
+            e.preventDefault();
+            let formData = new FormData(e.target);
+
+            let loading = document.getElementById("ans-loading");
+            // show loader
+
+            loading.style.display ="block";
+
+            let res = await fetch("/ask", {
+            method: "POST",
+            body: formData
+
+            });
+
+            let data = await res.json();
+            document.getElementById("answer").innerText = data.response;
+
+            loading.style.display = "none"; // hide loader
+
+        };
+
+    document.getElementById("emailForm").onsubmit = async (e) => {
+        e.preventDefault();
+        let formData = new FormData(e.target);
+
+        let loading = document.getElementById("summary-loading");
+        loading.style.display = "block";
+
+        let res = await fetch("/summarize", {
+        method: "POST",
+        body: formData
+
+        });
+
+        let data = await res.json();
+        document.getElementById("summary").innerText = data.response;
+
+        loading.style.display = "none"; // hide loader
+    };
+
+    document.getElementById("documentForm").onsubmit = async (e) => {
+        e.preventDefault();
+        let formData = new FormData(e.target);
+
+        let loading = document.getElementById("doc-loading");
+        let output = document.getElementById("doc-summary");
+
+        loading.style.display = "block";
+        output.innerText = "";
+
+        let res = await fetch("/summarize-document", {
+            method: "POST",
+            body: formData
+        });
+
+        let data = await res.json();
+        output.innerText = data.response;
+
+        loading.style.display = "none";
+    };
+
+    </script>
+    
+</body>
+</html>

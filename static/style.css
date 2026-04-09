@@ -1,0 +1,303 @@
+/* Theme colors */
+:root {
+    --ink: #171717;
+    --muted-ink: #5c5c5c;
+    --surface: #ffffff;
+    --page: #fff9ec;
+    --line: #171717;
+    --mint: #b8f7d4;
+    --pink: #ff6b9a;
+    --yellow: #ffe66d;
+    --button: #171717;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Lora', serif;
+    background:
+        linear-gradient(135deg, rgba(255, 107, 154, 0.18) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(184, 247, 212, 0.5) 25%, transparent 25%),
+        var(--page);
+    background-size: 44px 44px, 44px 44px, auto;
+    color: var(--ink);
+    padding: 48px 20px;
+}
+
+.main-heading {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 34px;
+    text-align: center;
+    color: var(--ink);
+    font-size: 44px;
+    line-height: 1.2;
+    padding: 10px 18px;
+    background: var(--yellow);
+    border: 3px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 8px 8px 0 var(--pink);
+}
+
+.main-heading::after {
+    content: "ready when you are";
+    position: absolute;
+    right: -16px;
+    bottom: -18px;
+    padding: 5px 10px;
+    background: var(--mint);
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.container {
+    display: grid;
+    gap: 34px;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.task-panel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: linear-gradient(180deg, var(--mint) 0 92px, var(--surface) 92px);
+    padding: 42px 36px 36px;
+    border: 3px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 12px 12px 0 var(--ink);
+}
+
+.task-panel::before {
+    content: "";
+    position: absolute;
+    right: 24px;
+    top: 22px;
+    width: 56px;
+    height: 20px;
+    background:
+        radial-gradient(circle, var(--pink) 0 5px, transparent 6px),
+        radial-gradient(circle, var(--yellow) 0 5px, transparent 6px),
+        radial-gradient(circle, var(--ink) 0 5px, transparent 6px);
+    background-position: 0 0, 20px 0, 40px 0;
+    background-repeat: no-repeat;
+}
+
+.ask-panel {
+    transform: rotate(-0.5deg);
+}
+
+.email-panel {
+    background: linear-gradient(180deg, var(--yellow) 0 92px, var(--surface) 92px);
+    transform: rotate(0.5deg);
+}
+
+.document-panel {
+    background: linear-gradient(180deg, var(--pink) 0 92px, var(--surface) 92px);
+}
+
+h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    font-size: 24px;
+    line-height: 1.25;
+    margin: 16px 0 18px;
+}
+
+h2::before {
+    content: "";
+    width: 8px;
+    height: 30px;
+    flex: 0 0 8px;
+    background: var(--pink);
+    border: 2px solid var(--line);
+    border-radius: 6px;
+    box-shadow: 7px 7px 0 var(--yellow);
+}
+
+form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 14px;
+    background: #f6f6f6;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px 16px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+input::placeholder {
+    color: #7a878c;
+}
+
+input:focus {
+    border-color: var(--line);
+    box-shadow: 4px 4px 0 var(--pink);
+    transform: translate(-2px, -2px);
+}
+
+button {
+    min-width: 120px;
+    padding: 15px 20px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    background: var(--button);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 var(--pink);
+    transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+button:hover {
+    background: var(--pink);
+    color: var(--ink);
+    box-shadow: 5px 5px 0 var(--yellow);
+    transform: translate(-2px, -2px);
+}
+
+button:active {
+    box-shadow: 2px 2px 0 var(--yellow);
+    transform: translate(2px, 2px);
+}
+
+#ans-loading,
+#summary-loading,
+#doc-loading {
+    margin-bottom: 12px;
+    color: var(--pink);
+    font-weight: 700;
+}
+
+#answer,
+#summary,
+#doc-summary {
+    min-height: 24px;
+    color: var(--muted-ink);
+    line-height: 1.6;
+}
+
+#answer:not(:empty),
+#summary:not(:empty),
+#doc-summary:not(:empty) {
+    margin-top: 14px;
+    margin-bottom: 28px;
+    padding: 18px 18px 18px 22px;
+    background: var(--yellow);
+    border: 2px solid var(--line);
+    border-left: 10px solid var(--pink);
+    border-radius: 8px;
+    color: var(--ink);
+    font-weight: 600;
+    box-shadow: 6px 6px 0 var(--mint);
+}
+
+#answer:not(:empty)::before,
+#summary:not(:empty)::before,
+#doc-summary:not(:empty)::before {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--pink);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+#answer:not(:empty)::before {
+    content: "AI Reply";
+}
+
+#summary:not(:empty)::before {
+    content: "Email Summary";
+}
+
+#doc-summary:not(:empty)::before {
+    content: "Document Summary";
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 10px 14px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    background: var(--yellow);
+    color: var(--ink);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+hr {
+    margin: 36px 0 28px;
+    border: 0;
+    border-top: 3px solid var(--line);
+}
+
+.intro-text {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 32px 16px;
+    }
+
+    .main-heading {
+        font-size: 30px;
+        box-shadow: 6px 6px 0 var(--pink);
+    }
+
+    .main-heading::after {
+        right: 6px;
+        bottom: -20px;
+    }
+
+    .container {
+        gap: 28px;
+    }
+
+    .task-panel {
+        padding: 36px 18px 24px;
+        box-shadow: 7px 7px 0 var(--ink);
+    }
+
+    .ask-panel,
+    .email-panel {
+        transform: none;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
