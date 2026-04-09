@@ -2,6 +2,8 @@
 
 A Flask-based AI assistant powered by Gemini. It can answer questions, summarize emails, and summarize uploaded PDF documents from one colorful web interface.
 
+**Live Demo:** [https://ai-personal-assistant-xhml.onrender.com/](https://ai-personal-assistant-xhml.onrender.com/)
+
 ## Screenshot
 
 ### Home Page
