@@ -17,7 +17,7 @@ client = genai.Client(api_key = api_key)
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024
 
-def gemini_response(*, contents, temperature=0.3, max_output_tokens=512):
+def gemini_response(*, contents, temperature=0.3, max_output_tokens=4096):
     try:
         response = client.models.generate_content(
             model="gemini-3-flash-preview",
